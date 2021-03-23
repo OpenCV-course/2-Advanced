@@ -8,6 +8,7 @@
 5. [Masking](#schema5)
 6. [Histogram Computation](#schema6)
 7. [Thresholding/Binarizing Images](#schema7)
+8. [Edge Detection](#schema8)
 
 <hr>
 
@@ -240,3 +241,31 @@ adaptive_thresh = cv.adaptiveThreshold(gray, 255, cv.ADAPTIVE_THRESH_MEAN_C,cv.T
 cv.imshow("Adaptive thresholding", adaptive_thresh)
 ~~~
 ![hist](./images/015.png)
+
+
+<hr>
+
+<a name="schema8"></a>
+
+# 8. Edge Detection
+
+Laplacian
+~~~python
+lap = cv.Laplacian(gray, cv.CV_64F)
+lap = np.uint8(np.absolute(lap))
+~~~
+![lap](./images/016.png)
+
+
+Sobel
+~~~python
+sobelx = cv.Sobel(gray, cv.CV_64F, 1, 0)
+sobely = cv.Sobel(gray, cv.CV_64F, 0, 1)
+~~~
+![sobel](./images/017.png)
+
+Combined sobel
+~~~python
+combined_sobel = cv.bitwise_or(sobelx, sobely)
+~~~
+![sobel](./images/018.png)
